@@ -80,3 +80,13 @@ body,
     @apply bg-background text-foreground;
   }
 }
+
+/* Clerk internal CSS classes*/
+
+.cl-internal-h5qh6n {
+  color: rgb(171, 105, 236);
+}
+
+.cl-internal-hhiw0n {
+  color: rgb(171, 105, 236);
+}
