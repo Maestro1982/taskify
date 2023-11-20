@@ -12,6 +12,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export type Organization = {
   id: string;
@@ -40,7 +41,7 @@ export const NavItem = ({
     {
       label: 'Boards',
       icon: <Layout className='w-4 h-4 mr-2' />,
-      href: `/organization/${organization.id}/`,
+      href: `/organization/${organization.id}`,
     },
     {
       label: 'Activity',
@@ -96,7 +97,7 @@ export const NavItem = ({
             onClick={() => onClick(route.href)}
             className={cn(
               'w-full font-normal justify-start pl-10 mb-1',
-              pathname === route.href && 'bg-indigo-500/10 text-indigo-700'
+              pathname === route.href && 'bg-indigo-300/10 text-indigo-500'
             )}
             variant='ghost'
           >
@@ -106,5 +107,16 @@ export const NavItem = ({
         ))}
       </AccordionContent>
     </AccordionItem>
+  );
+};
+
+NavItem.Skeleton = function SkeletonNavItem() {
+  return (
+    <div className='flex items-center gap-x-2'>
+      <div className='w-10 h-10 relative shrink-0'>
+        <Skeleton className='h-full w-full absolute' />
+      </div>
+      <Skeleton className='h-10 w-full' />
+    </div>
   );
 };
