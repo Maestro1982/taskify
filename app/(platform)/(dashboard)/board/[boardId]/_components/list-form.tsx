@@ -85,7 +85,7 @@ export const ListForm = () => {
           <div className='flex items-center gap-x-1'>
             <FormSubmit>Add list</FormSubmit>
             <Button onClick={disableEditing} size='sm' variant='ghost'>
-              <X className='h-5 w-5' />
+              <X className='h-5 w-5 dark:text-neutral-500' />
             </Button>
           </div>
         </form>
@@ -97,7 +97,7 @@ export const ListForm = () => {
     <ListWrapper>
       <button
         onClick={enableEditing}
-        className='w-full rounded-md bg-white/80 dark:bg-neutral-900/80 hover:bg-white/50 dark:hover:bg-neutral-900/50 transition p-3 flex items-center font-medium text-sm'
+        className='w-full rounded-md bg-white/80 dark:bg-neutral-900/80 hover:bg-white/50 dark:hover:bg-neutral-900/50 transition p-3 flex items-center font-medium text-sm dark:text-neutral-300'
       >
         <Plus className='w-4 h-4 mr-2' />
         Add a list
