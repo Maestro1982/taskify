@@ -6,6 +6,9 @@ import { dark } from '@clerk/themes';
 import { useTheme } from 'next-themes';
 import { Toaster } from 'sonner';
 
+import { ModalProvider } from '@/components/providers/modal-provider';
+import { QueryProvider } from '@/components/providers/query-provider';
+
 const PlatformLayout = ({ children }: { children: ReactNode }) => {
   const { theme } = useTheme();
   return (
@@ -14,8 +17,11 @@ const PlatformLayout = ({ children }: { children: ReactNode }) => {
         baseTheme: theme === 'dark' ? dark : undefined,
       }}
     >
-      <Toaster richColors />
-      {children}
+      <QueryProvider>
+        <Toaster richColors />
+        <ModalProvider />
+        {children}
+      </QueryProvider>
     </ClerkProvider>
   );
 };
