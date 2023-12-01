@@ -10,7 +10,7 @@ interface Props {
   action: ACTION;
 }
 
-export const CreateAuditLog = async (props: Props) => {
+export const createAuditLog = async (props: Props) => {
   try {
     const { orgId } = auth();
     const user = await currentUser();
@@ -21,6 +21,9 @@ export const CreateAuditLog = async (props: Props) => {
 
     const { entityId, entityType, entityTitle, action } = props;
 
+    // Log the user object to inspect its structure
+    console.log('Clerk User Object:', user);
+
     await db.auditLog.create({
       data: {
         orgId,
@@ -30,7 +33,10 @@ export const CreateAuditLog = async (props: Props) => {
         action,
         userId: user.id,
         userImage: user?.imageUrl,
-        userName: user?.firstName + ' ' + user?.lastName,
+        userName:
+          user?.firstName + ' ' + user?.lastName ||
+          user?.emailAddresses[0]?.emailAddress ||
+          'Unknown',
       },
     });
   } catch (error) {
