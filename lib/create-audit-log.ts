@@ -23,6 +23,9 @@ export const createAuditLog = async (props: Props) => {
 
     // Log the user object to inspect its structure
     console.log('Clerk User Object:', user);
+    console.log(user?.emailAddresses[0]?.emailAddress);
+
+    const email = user?.emailAddresses[0].emailAddress;
 
     await db.auditLog.create({
       data: {
@@ -34,9 +37,7 @@ export const createAuditLog = async (props: Props) => {
         userId: user.id,
         userImage: user?.imageUrl,
         userName:
-          user?.firstName + ' ' + user?.lastName ||
-          user?.emailAddresses[0]?.emailAddress ||
-          'Unknown',
+          user?.firstName + ' ' + user?.lastName || user?.username || email,
       },
     });
   } catch (error) {
