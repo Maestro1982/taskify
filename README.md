@@ -16,4 +16,9 @@
 - Landing page
 - MySQL DB
 - Prisma ORM
-- shadcnUI & TailwindCSSKey Features:
+- shadcnUI & TailwindCSSKey Features
+
+#Payment with Stripe instructions
+
+- use for the card number repeadtly 42 till end
+- expire date and CC you can choose random
