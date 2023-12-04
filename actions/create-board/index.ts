@@ -11,6 +11,7 @@ import {
   incrementAvailableCount,
   hasAvailableCount,
 } from '@/lib/organization-limit';
+import { checkSubscription } from '@/lib/subscription';
 
 import { InputType, ReturnType } from './types';
 
@@ -26,8 +27,9 @@ const handler = async (data: InputType): Promise<ReturnType> => {
   }
 
   const canCreate = await hasAvailableCount();
+  const isPro = await checkSubscription();
 
-  if (!canCreate) {
+  if (!canCreate && !isPro) {
     return {
       error:
         'You have reached the maximum number of free boards. Please upgrade to Pro if you want to create unlimited boards.',
@@ -74,7 +76,9 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       },
     });
 
-    await incrementAvailableCount();
+    if (!isPro) {
+      await incrementAvailableCount();
+    }
 
     await createAuditLog({
       entityId: board.id,
