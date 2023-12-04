@@ -16,7 +16,7 @@
 - Landing page
 - MySQL DB
 - Prisma ORM
-- shadcnUI & TailwindCSSKey Features
+- shadcnUI & TailwindCSS
 
 #Payment with Stripe instructions
 
